@@ -1,0 +1,133 @@
+org: zarg33
+app: backend
+service: backend
+
+plugins:
+  - 'serverless-plugin-typescript'
+  - serverless-plugin-optimize
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  vpc:
+    securityGroupIds:
+      - sg-043015e7ed6ce24bb
+    subnetIds:
+      - subnet-0fa7459b5aa3668b8
+      - subnet-06090db2c1efae954
+
+functions:
+  getRoutes: # The name of the lambda function
+    # The module 'handler' is exported in the file 'src/lambda'
+    handler: src/main.handler
+    environment:
+      DATABASE_PORT: 3306
+      DATABASE_HOST: 'keiki-backend-service.calwemx7l5xi.us-east-1.rds.amazonaws.com'
+      DATABASE_NAME: keiki
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+
+    events:
+      - http:
+          method: GET
+          cors: true
+          path: /routes
+
+  addRoute:
+    handler: src/main.handler
+    environment:
+      DATABASE_PORT: 3306
+      DATABASE_HOST: 'keiki-backend-service.calwemx7l5xi.us-east-1.rds.amazonaws.com'
+      DATABASE_NAME: keiki
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+    events:
+      - http:
+          method: POST
+          cors: true
+          path: /routes
+
+  deleteRoute:
+    handler: src/main.handler
+    environment:
+      DATABASE_PORT: 3306
+      DATABASE_HOST: 'keiki-backend-service.calwemx7l5xi.us-east-1.rds.amazonaws.com'
+      DATABASE_NAME: keiki
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+    events:
+      - http:
+          method: DELETE
+          cors: true
+          path: /routes
+
+  updateRoute:
+    handler: src/main.handler
+    environment:
+      DATABASE_PORT: 3306
+      DATABASE_HOST: 'keiki-backend-service.calwemx7l5xi.us-east-1.rds.amazonaws.com'
+      DATABASE_NAME: keiki
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+    events:
+      - http:
+          method: PATCH
+          cors: true
+          path: /routes
+
+  getTransport:
+    handler: src/main.handler
+    environment:
+      DATABASE_PORT: 3306
+      DATABASE_HOST: 'keiki-backend-service.calwemx7l5xi.us-east-1.rds.amazonaws.com'
+      DATABASE_NAME: keiki
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+    events:
+      - http:
+          method: GET
+          cors: true
+          path: /transport
+
+  addTransport:
+    handler: src/main.handler
+    environment:
+      DATABASE_PORT: 3306
+      DATABASE_HOST: 'keiki-backend-service.calwemx7l5xi.us-east-1.rds.amazonaws.com'
+      DATABASE_NAME: keiki
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+    events:
+      - http:
+          method: POST
+          cors: true
+          path: /transport
+
+  deleteTransport:
+    handler: src/main.handler
+    environment:
+      DATABASE_PORT: 3306
+      DATABASE_HOST: 'keiki-backend-service.calwemx7l5xi.us-east-1.rds.amazonaws.com'
+      DATABASE_NAME: keiki
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+    events:
+      - http:
+          method: DELETE
+          cors: true
+          path: /transport
+
+  updateTransport:
+    handler: src/main.handler
+    environment:
+      DATABASE_PORT: 3306
+      DATABASE_HOST: 'keiki-backend-service.calwemx7l5xi.us-east-1.rds.amazonaws.com'
+      DATABASE_NAME: keiki
+      DATABASE_USER: root
+      DATABASE_PASSWORD: password
+    events:
+      - http:
+          method: PATCH
+          cors: true
+          path: /transport
