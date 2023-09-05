@@ -7,10 +7,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import {
-  StatusType,
-  TransportType,
-} from '../../../lib/services/database/entities/interfaces/interfaces';
+import { StatusType } from '../../../lib/services/database/entities/interfaces/interfaces';
 
 const transportTypes = ['private', 'passenger', 'cargo'] as const;
 export type TransportTypes = (typeof transportTypes)[number];
